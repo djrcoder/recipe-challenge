@@ -1,15 +1,12 @@
 import React from 'react';
 import './App.css';
+var customData = require('./data/ingredients.json');
 
-const csv = require("csvtojson");
 
 function App() {
 
-  const converter = csv()
-    .fromFile("../data/one-thousand-ingredients.csv")
-    .then(json => console.log(json))
 
-  converter();
+  console.log(customData)
 
   return (
     <div className="App">
