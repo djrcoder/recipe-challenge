@@ -1,43 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+import RangeSlider from 'react-bootstrap-range-slider';
+import FoodList from "./components/foodselection"
 
-const customData = require('./data/ingredients.json');
-const ingredientArray = [];
+// const proptest = 2;
 
-// Define limits for randomNum function
-const minimum = 0;
-const maximum = 1000;
-
-// set limit for number of results
-const recipeSize = 8;
-
-function randomNum(minimum, maximum) {
-  const rand = Math.floor(Math.random() * (maximum - minimum + 1) + minimum)
-  return rand;
-}
 
 
 function App() {
 
-  for (let i = 0; i < recipeSize; i++) {
-    ingredientArray.push(customData[randomNum(minimum, maximum)].ingredient)
-  }
+  const [amountOfFood, setAmountOfFood] = useState(0);
 
-  console.log(ingredientArray)
+
 
   return (
+
     <div className="App">
       <header className="App-header">
       </header>
 
-      <h3>HELLO</h3>
+      <h3>Challenge Time</h3>
       <p>
       </p>
+      <h2>How big are we gonna make this?</h2>
+
+      <RangeSlider
+        value={amountOfFood}
+        onChange={changeEvent => setAmountOfFood(changeEvent.target.value)}
+        min={1}
+        max={5}
+        size={"sm"}
+      />
 
 
-      {ingredientArray.map(food => (
-        <div className="Ingredients" key={food}>{food}</div>
-      ))}
+      <FoodList sizeOfList={amountOfFood} />
 
     </div>
   );
